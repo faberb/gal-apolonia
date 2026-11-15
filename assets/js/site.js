@@ -209,9 +209,6 @@ function renderArticle(post) {
   const tagLinks = [...new Set(tags)].map((tag) =>
     `<a href="?tag=${encodeURIComponent(tag)}">${escapeHtml(tag)}</a>`
   ).join("");
-  const hero = post.image
-    ? `<figure class="article-feature-image"><img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}"></figure>`
-    : "";
   const nextLinks = [
     older ? `<a href="${postUrl(older)}">← Older story<br><strong>${escapeHtml(older.title)}</strong></a>` : "",
     newer ? `<a href="${postUrl(newer)}">Newer story →<br><strong>${escapeHtml(newer.title)}</strong></a>` : "",
@@ -226,7 +223,6 @@ function renderArticle(post) {
         <h1>${escapeHtml(post.title)}</h1>
         <p class="article-excerpt">${escapeHtml(post.excerpt)}</p>
       </header>
-      ${hero}
       <div class="article-content">${post.content}</div>
       <div class="article-tags" aria-label="Story topics">${tagLinks}</div>
       <nav class="article-next" aria-label="More stories">${nextLinks}</nav>
