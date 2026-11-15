@@ -56,4 +56,8 @@ py -m unittest tools\test_import_wordpress.py
 
 ## GitHub Pages
 
-The source repository stays private. Its current GitHub Pages settings say a private repository needs an upgrade or must be made public before Pages can be enabled; restricting a published Pages site to private access requires GitHub Enterprise. No visibility change or public deployment has been made.
+The repository and GitHub Pages site are public. Pages is configured from the `main` branch at the repository root:
+
+<https://faberb.github.io/gal-apolonia/>
+
+Private access for a GitHub Pages site requires GitHub Enterprise. Do not add private content to this repository.

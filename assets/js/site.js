@@ -94,8 +94,11 @@ function categoryLink(label) {
   return `<a class="category-chip" href="?category=${encodeURIComponent(label)}">${escapeHtml(label)}</a>`;
 }
 
-function createStoryCard(post) {
-  const category = post.categories[0] || "Journal";
+function createStoryCard(post, categoryFilter) {
+  const matchingCategory = categoryFilter
+    ? post.categories.find((name) => name.toLocaleLowerCase() === categoryFilter.toLocaleLowerCase())
+    : undefined;
+  const category = matchingCategory || post.categories[0] || "Journal";
   const image = post.image
     ? `<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}" loading="lazy" decoding="async">`
     : '<span aria-hidden="true">✿</span>';
@@ -265,7 +268,7 @@ function renderArchive(filters) {
   const visible = matching.slice(start, start + POSTS_PER_PAGE);
 
   storyGrid.setAttribute("aria-busy", "false");
-  storyGrid.innerHTML = visible.map(createStoryCard).join("");
+  storyGrid.innerHTML = visible.map((post) => createStoryCard(post, filters.category)).join("");
   emptyState.hidden = matching.length > 0;
   archiveCount.textContent = matching.length === 1
     ? "1 story"
